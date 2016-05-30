@@ -9,12 +9,12 @@ import java.util.HashMap;
  */
 public class ReportGeneratorFactory {
 
-    public TxtReportGenerator getParser(String extension){
+    public static TxtReportGenerator getReportGenerator(String extension){
         if (extension == null) {
             return null;
         } else if (extension.equals("txt")) {
             //todo
-            return new TxtReportGenerator(3, 4, new HashMap<>());
+            return new TxtReportGenerator();
         }
         return null;
     }

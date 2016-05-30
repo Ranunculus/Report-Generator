@@ -18,6 +18,8 @@ public class TxtReportGenerator implements ReportGenerator {
     private int width;
     private HashMap<String, Integer> columns;
 
+    public TxtReportGenerator() {}
+
     public TxtReportGenerator(int height, int width, HashMap<String, Integer> columns) {
         this.height = height;
         this.width = width;
