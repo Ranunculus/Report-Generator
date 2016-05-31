@@ -5,5 +5,5 @@ package com.texuna.simpletest.parsers;
  */
 public interface Parser {
 
-    void parse();
+    void parse(String file);
 }

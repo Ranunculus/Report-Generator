@@ -6,11 +6,11 @@ package com.texuna.simpletest.parsers;
  */
 public class ParserFactory {
 
-    public Parser getParser(String extension){
+    public static Parser getParser(String extension){
         if (extension == null) {
             return null;
-        } else if (extension.equals("txt")) {
-            return new TxtParser();
+        } else if (extension.equals("tsv")) {
+            return new TsvParser();
         } else if (extension.equals("xml")) {
             return new XmlParser();
         }

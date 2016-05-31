@@ -1,6 +1,6 @@
 package com.texuna.simpletest.generators;
 
-import java.util.HashMap;
+import com.texuna.simpletest.settings.Settings;
 
 /**
  * A report generator for simple txt documents;
@@ -14,16 +14,12 @@ public class TxtReportGenerator implements ReportGenerator {
     private static final String PAGE_DELIMETER = "~";
     private static final String ROW_DELIMETER = "-";
 
-    private int height;
-    private int width;
-    private HashMap<String, Integer> columns;
+    private Settings settings;
 
     public TxtReportGenerator() {}
 
-    public TxtReportGenerator(int height, int width, HashMap<String, Integer> columns) {
-        this.height = height;
-        this.width = width;
-        this.columns = columns;
+    public TxtReportGenerator(Settings settings) {
+        this.settings = settings;
     }
 
     @Override
@@ -31,27 +27,11 @@ public class TxtReportGenerator implements ReportGenerator {
 
     }
 
-    public int getHeight() {
-        return height;
+    public Settings getSettings() {
+        return settings;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public HashMap<String, Integer> getColumns() {
-        return columns;
-    }
-
-    public void setColumns(HashMap<String, Integer> columns) {
-        this.columns = columns;
+    public void setSettings(Settings settings) {
+        this.settings = settings;
     }
 }
