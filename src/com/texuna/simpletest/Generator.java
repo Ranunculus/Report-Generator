@@ -36,6 +36,7 @@ public class Generator {
          */
         TxtReportGenerator txtReportGenerator = ReportGeneratorFactory.getReportGenerator("txt");
         txtReportGenerator.setSettings(xmlParser.getParsedSettings());
+        txtReportGenerator.setInputData(tsvParser.getTsvParserResult());
         txtReportGenerator.generate();
     }
 }

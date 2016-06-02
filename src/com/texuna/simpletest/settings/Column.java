@@ -12,13 +12,13 @@ public class Column {
     @XmlElement(name = "title")
     private String title;
     @XmlElement(name = "width")
-    private String width;
+    private int width;
 
     public String getTitle() {
         return title;
     }
 
-    public String getWidth() {
+    public int getWidth() {
         return width;
     }
 }
