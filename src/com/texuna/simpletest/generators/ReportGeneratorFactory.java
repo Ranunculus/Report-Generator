@@ -13,7 +13,6 @@ public class ReportGeneratorFactory {
         if (extension == null) {
             return null;
         } else if (extension.equals("txt")) {
-            //todo
             return new TxtReportGenerator();
         }
         return null;
