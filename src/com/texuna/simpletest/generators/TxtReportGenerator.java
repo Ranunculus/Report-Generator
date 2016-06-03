@@ -1,10 +1,12 @@
 package com.texuna.simpletest.generators;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
 import com.texuna.simpletest.settings.Column;
 import com.texuna.simpletest.settings.Settings;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * A report generator for simple txt documents;
@@ -44,6 +46,65 @@ public class TxtReportGenerator implements ReportGenerator {
             return;
         }
         composeTableHead();
+
+        inputData.forEach(this::composeTableRow);
+//        composePages();
+    }
+
+    private void composeTableRow(String[] data) {
+        //todo: calculate height of the row
+        if(data.length != settings.getColumns().size()){
+            System.out.println("The size of input data != size in settings!");
+            return;
+        }
+        /**
+         * calculating row height
+         *
+         * if data size is bigger than row width: find how much rows we need to fit all the data
+         */
+        int i = 0;
+        int height = 1;
+        for (Column column : settings.getColumns()) {
+            if(data[i].length() / column.getWidth() > 1){
+               if(height < data[i].length() / column.getWidth()) {
+                   height = data[i].length() / column.getWidth();
+               }
+               if(data[i].length() % column.getWidth() > 0){
+                   height++;
+               }
+            }
+            i++;
+        }
+//        System.out.println("Current line height = " + height);
+        currentLine = new char[height][settings.getPage().getWidth()];
+        int outerCarriagePosition = 0;
+        for (int column = 0; column < data.length; column++) {
+            //todo: refactor .get(0)
+            int settingsColumnWidth = settings.getColumns().get(column).getWidth();
+            int currentColumnCarriagePosition = 0;
+            for (int innerRow = 0; innerRow < height; innerRow++){
+                currentLine[innerRow][0+outerCarriagePosition] = COLUMN_DELIMITER;
+                currentLine[innerRow][1+outerCarriagePosition] = WORD_DELIMITER;
+                int carriagePosition = 2;
+                for(; carriagePosition < settingsColumnWidth+2; carriagePosition++ ){
+                    if(currentColumnCarriagePosition >= data[column].length()) {
+                        currentLine[innerRow][carriagePosition + outerCarriagePosition] = WORD_DELIMITER;
+                    } else {
+                        currentLine[innerRow][carriagePosition + outerCarriagePosition] = data[column].charAt(currentColumnCarriagePosition);
+                        currentColumnCarriagePosition++;
+                    }
+                }
+                currentLine[innerRow][settingsColumnWidth + outerCarriagePosition + 2] = WORD_DELIMITER;
+                currentLine[innerRow][settingsColumnWidth + outerCarriagePosition + 3] = COLUMN_DELIMITER;
+            }
+            outerCarriagePosition += settingsColumnWidth + 2 + 1;
+        }
+        System.out.println("Result for current string");
+        for(int x = 0; x < height; x++ ) {
+            System.out.println(currentLine[x]);
+        }
+
+
     }
 
     //todo: generalize for data
