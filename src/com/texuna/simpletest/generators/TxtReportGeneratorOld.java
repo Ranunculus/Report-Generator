@@ -12,6 +12,7 @@ import java.util.List;
  *
  * Created by Ranunculus on 29/05/16.
  */
+@Deprecated
 public class TxtReportGeneratorOld implements ReportGenerator {
 
     private static final char WORD_DELIMITER = ' ';
