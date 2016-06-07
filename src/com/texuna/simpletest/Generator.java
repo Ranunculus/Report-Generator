@@ -1,7 +1,9 @@
 package com.texuna.simpletest;
 
+import com.texuna.simpletest.generators.ReportGenerator;
 import com.texuna.simpletest.generators.ReportGeneratorFactory;
 import com.texuna.simpletest.generators.TxtReportGenerator;
+import com.texuna.simpletest.generators.TxtReportGeneratorOld;
 import com.texuna.simpletest.parsers.ParserFactory;
 import com.texuna.simpletest.parsers.XmlParser;
 import com.texuna.simpletest.parsers.TsvParser;
@@ -34,7 +36,7 @@ public class Generator {
         /**
          * Creating txtReportGenerator to create a report
          */
-        TxtReportGenerator txtReportGenerator = ReportGeneratorFactory.getReportGenerator("txt");
+        TxtReportGeneratorOld txtReportGenerator = (TxtReportGeneratorOld) ReportGeneratorFactory.getReportGenerator("old");
         txtReportGenerator.setSettings(xmlParser.getParsedSettings());
         txtReportGenerator.setInputData(tsvParser.getTsvParserResult());
         txtReportGenerator.generate();

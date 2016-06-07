@@ -6,19 +6,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * Created by malyutina on 31.05.2016.
  */
-@XmlRootElement(name = "column")
-public class Column {
+@XmlRootElement(name = "page")
+public class PageConfig {
 
-    @XmlElement(name = "title")
-    private String title;
     @XmlElement(name = "width")
     private int width;
-
-    public String getTitle() {
-        return title;
-    }
+    @XmlElement(name = "height")
+    private int height;
 
     public int getWidth() {
         return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }

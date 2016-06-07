@@ -13,17 +13,17 @@ import java.util.List;
 public class Settings {
 
     @XmlElement(name = "page")
-    private Page page;
+    private PageConfig page;
 
     @XmlElementWrapper(name="columns")
     @XmlElement(name = "column")
-    private List<Column> columns;
+    private List<ColumnConfig> columns;
 
-    public Page getPage() {
+    public PageConfig getPage() {
         return page;
     }
 
-    public List<Column> getColumns() {
+    public List<ColumnConfig> getColumns() {
         return columns;
     }
 }
